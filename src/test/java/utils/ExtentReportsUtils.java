@@ -70,36 +70,20 @@ public class ExtentReportsUtils {
 
     }
 
-   /* public static void addInformacoesTest(String url, Response resposta)
-    {
-        TEST.log(Status.INFO, "<pre>URL: "+ url+" </pre>");
-        TEST.log(Status.INFO, "<pre>CONTENTTYPE: "+resposta.contentType()+"</pre>");
-        TEST.log(Status.INFO, "<pre>STATUS CODE: "+resposta.getStatusCode() +"</pre>");
-        TEST.log(Status.INFO, "<pre>RESPOSTA REQUISIÇÃO: "+resposta.body().jsonPath().get().toString() +"</pre>");
-    }
-
-    public static void addInformacoesTesteWeb(String url, Response resposta)
-    {
-        TEST.log(Status.INFO, "<pre>URL: "+ url+" </pre>");
-        TEST.log(Status.INFO, "<pre>CONTENTTYPE: "+resposta.contentType()+"</pre>");
-        TEST.log(Status.INFO, "<pre>STATUS CODE: "+resposta.getStatusCode() +"</pre>");
-        TEST.log(Status.INFO, "<pre>RESPOSTA REQUISIÇÃO: "+resposta.body().htmlPath().get().toString() +"</pre>");
-    }
-*/
     public static void addRespostaTeste(String url, Response resposta, String tipoEsperado)
     {
         TEST.log(Status.INFO, "<pre>URL: "+ url+" </pre>");
-        TEST.log(Status.INFO, "<pre>CONTENTTYPE: "+resposta.contentType()+"</pre>");
+        TEST.log(Status.INFO, "<pre>CONTENT-TYPE: "+resposta.contentType()+"</pre>");
         TEST.log(Status.INFO, "<pre>STATUS CODE: "+resposta.getStatusCode() +"</pre>");
 
         switch (tipoEsperado.toUpperCase())
         {
             case "HTML":
-                TEST.log(Status.INFO, "<pre>RESPOSTA REQUISIÇÃO: "+resposta.body().htmlPath().get().toString() +"</pre>");
+                TEST.log(Status.INFO, "<pre>RESPOSTA DA REQUISIÇÃO: "+resposta.body().htmlPath().get().toString() +"</pre>");
                 break;
 
             case "JSON":
-                TEST.log(Status.INFO, "<pre>RESPOSTA REQUISIÇÃO: "+resposta.body().jsonPath().get().toString() +"</pre>");
+                TEST.log(Status.INFO, "<pre>RESPOSTA DA REQUISIÇÃO: "+resposta.body().jsonPath().get().toString() +"</pre>");
                 break;
         }
 
