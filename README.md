@@ -1,8 +1,7 @@
-##Titulo do Projeto
-<h1 align="center">Template Relatório</h1>
+##Template Relatório
 
 ## Descrição do Projeto
-<p align="justify"> Este é um projeto base com configurações sobre relatórios do teste pré programadas</p>
+Este é um projeto base com configurações sobre relatórios do teste pré programadas
 
 - Ao final dos testes será gerado um arquivo .html contendo os resultados dos testes executados.
 
