@@ -15,8 +15,8 @@ public class ExtentReportsUtils {
     public static ExtentReports EXTENT_REPORT = null;
     public static ExtentTest TEST;
     public static ExtentHtmlReporter HTML_REPORTER = null;
-    public static String caminhoRelatorio = "./relatorios/";
-    public static String nomeRelatorio = "relatorio.htm";
+    public static String caminhoRelatorio = "./target/reports/";
+    public static String nomeRelatorio = "relatorio2.htm";
     public static String arquivoRelatorio = caminhoRelatorio + nomeRelatorio;
 
     /**configurar tudo o que se diz respeito aos relatórios
