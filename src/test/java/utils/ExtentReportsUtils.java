@@ -1,6 +1,5 @@
 package utils;
 
-
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.Status;
@@ -9,15 +8,16 @@ import com.aventstack.extentreports.reporter.configuration.Theme;
 import io.restassured.response.Response;
 import org.testng.ITestResult;
 
-import java.util.Locale;
-
 public class ExtentReportsUtils {
+
+    private static PropertiesUtils prop = new PropertiesUtils();
+
     public static ExtentReports EXTENT_REPORT = null;
     public static ExtentTest TEST;
     public static ExtentHtmlReporter HTML_REPORTER = null;
-    public static String caminhoRelatorio = "./target/reports/";
-    public static String nomeRelatorio = "relatorio2.htm";
-    public static String arquivoRelatorio = caminhoRelatorio + nomeRelatorio;
+    private static String caminhoRelatorio = prop.getProp("caminhoRelatorio");
+    private static String nomeRelatorio = prop.getProp("nomeRelatorio");
+    private static String arquivoRelatorio = caminhoRelatorio + nomeRelatorio;
 
     /**configurar tudo o que se diz respeito aos relatórios
     O formato dos relatórios*/
@@ -70,6 +70,10 @@ public class ExtentReportsUtils {
 
     }
 
+    public static void addDetalhesRequest(String valor) {
+        TEST.log(Status.INFO, "<pre>"+ valor + " </pre>");
+    }
+
     public static void addRespostaTeste(String url, Response resposta, String tipoEsperado)
     {
         TEST.log(Status.INFO, "<pre>URL: "+ url+" </pre>");
@@ -83,11 +87,9 @@ public class ExtentReportsUtils {
                 break;
 
             case "JSON":
-                TEST.log(Status.INFO, "<pre>RESPOSTA DA REQUISIÇÃO: "+resposta.body().jsonPath().get().toString() +"</pre>");
+                TEST.log(Status.INFO, "<pre>RESPOSTA DA REQUISIÇÃO: "+ resposta.body().jsonPath().get().toString() +"</pre>");
                 break;
         }
-
-
     }
 
     public static void generateReport(){

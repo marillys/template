@@ -1,10 +1,10 @@
 package testes;
 
-import api.ApiRequest;
+import base.BaseTests;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class TestsAlteracoesRestAssured extends ApiRequest {
+public class TestsAlteracoesRestAssured extends BaseTests {
 
     @Test
     public void testeMethodo()
@@ -13,10 +13,7 @@ public class TestsAlteracoesRestAssured extends ApiRequest {
         super.params.put("appid", "6a6424d1582a9636d6d186ea0cc53620");
         super.params.put("units","metric");
 
-        super.uri = "http://api.openweathermap.org/data/2.5/weather";
-
         super.GET();
-
         Assert.assertEquals(response.getStatusCode(),400);
     }
 }

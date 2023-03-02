@@ -1,7 +1,6 @@
 package api;
 
 import io.restassured.http.Method;
-import io.restassured.response.Response;
 import utils.ApiUtils;
 import utils.RestAssuredUtils;
 
@@ -10,18 +9,9 @@ import static io.restassured.RestAssured.given;
 public class ApiRequest extends ApiUtils implements ApiVerbos {
     RestAssuredUtils rest = new RestAssuredUtils();
     @Override
-    /*public void GET() {
-        response = given()
-                .relaxedHTTPSValidation()
-                .params(params)
-                .headers(headers)
-                .get(uri);
-
-        super.log("GET");
-    }*/
     public void GET() {
         response = rest.executarRestRequest(Method.GET,
-                "http://api.openweathermap.org/data/2.5/weather",
+                super.uri,
                 super.params);
 
         super.log("GET");

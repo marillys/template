@@ -27,9 +27,6 @@ public class RestAssuredUtils {
 
         resposta = requestSpecification.request(method,url);
 
-        //Adiciona resultados ao relatório
-        ExtentReportsUtils.addRespostaTeste(url, resposta, "json");
-
         return resposta;
     }
 
