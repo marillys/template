@@ -43,7 +43,7 @@ public class TestsPets extends BaseTests {
 
         Assert.assertEquals(response.getStatusCode(),200);
         Assert.assertEquals(response.getBody().jsonPath().get("name").toString(),"Lili");
-        Assert.assertEquals(response.getBody().jsonPath().get("category.name").toString(),"Dogs");
+        Assert.assertEquals(response.getBody().jsonPath().get("category.name").toString(),"dog");
     }
 
     @Test

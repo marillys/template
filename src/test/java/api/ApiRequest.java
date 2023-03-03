@@ -29,12 +29,6 @@ public class ApiRequest extends ApiUtils implements ApiVerbos {
 
     @Override
     public void PUT() {
-        /*response = given()
-                .relaxedHTTPSValidation()
-                .params(params)
-                .headers(headers)
-                .body(body.toString())
-                .put(uri);*/
         preencherDadosRequest();
 
         response = rest.executarRestRequestRequestSpecification(Method.PUT, super.request);
@@ -60,17 +54,12 @@ public class ApiRequest extends ApiUtils implements ApiVerbos {
 
         response = rest.executarRestRequestRequestSpecification(Method.DELETE, super.request);
 
-        /*response = given()
-                .relaxedHTTPSValidation()
-                .params(params)
-                .headers(headers)
-                .delete(uri);*/
-
         super.log("DELETE");
     }
 
     private void preencherDadosRequest() {
-        super.request.params(super.params);
+        super.request.queryParams(super.params);
         super.request.basePath(super.uri);
+        super.request.headers(super.headers);
     }
 }

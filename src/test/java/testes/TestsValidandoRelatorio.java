@@ -27,8 +27,6 @@ public class TestsValidandoRelatorio extends BaseTests {
                 .when()
                 .get("http://api.openweathermap.org/data/2.5/weather")
                 .andReturn().xmlPath();
-
-
     }
 
     @Test
@@ -43,8 +41,6 @@ public class TestsValidandoRelatorio extends BaseTests {
                 .get("http://api.openweathermap.org/data/2.5/weather")
                 .andReturn();
 
-
-
         //ExtentReportsUtils.addInformacoesTest("http://api.openweathermap.org/data/2.5/weather", resposta, "json");
         ExtentReportsUtils.addRespostaTeste("http://api.openweathermap.org/data/2.5/weather", resposta, "html");
 
@@ -54,20 +50,6 @@ public class TestsValidandoRelatorio extends BaseTests {
         System.out.println("ID "+resposta.getSessionId());
         System.out.println("CODE "+resposta.getStatusCode());
 
-    }
-
-    @Test
-    public void teste2()
-    {
-        given()
-                .log().all()
-                .queryParam("q", "Fortaleza,BR")
-                .queryParam("appid", "6a6424d1582a9636d6d186ea0cc53620")
-                .queryParam("units","metric")
-                .when()
-                .get("http://api.openweathermap.org/data/2.5/weather")
-                .then().log().all()
-        .statusCode(400);
     }
 
     @Test
