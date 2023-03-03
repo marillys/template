@@ -1,7 +1,7 @@
 package testes;
 
 import base.BaseTests;
-import io.restassured.http.ContentType;
+import org.json.JSONObject;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -13,16 +13,16 @@ public class TestsPets extends BaseTests {
     @BeforeClass
     public void configClasse()
     {
-        super.request.baseUri(prop.getProp("base_url_pets"));
-        super.uri ="/pet";
+        url =prop.getProp("base_url_pets")+"/pet";
+        uri = "";
     }
 
     @Test
     public void cadastrarPet_ArquivoJson() throws IOException {
-        String body = arquivos.lerJson("src/test/resources/data/petCadastrar.json");
-
-        super.request.body(body);
-        super.request.contentType(ContentType.JSON);
+        String json = arquivos.lerJson("src/test/resources/data/petCadastrar.json");
+        super.headers.put("Accept", "application/json");
+        super.headers.put("Content-Type", "application/json");
+        super.body = new JSONObject(json);
 
         super.POST();
 
@@ -36,10 +36,11 @@ public class TestsPets extends BaseTests {
     public void consultarPet()
     {
         String petId = "8989";
-        super.request.contentType(ContentType.JSON);
-        super.uri ="/pet/"+petId;
+        super.headers.put("Accept", "application/json");
+        super.headers.put("Content-Type", "application/json");
+        uri ="/"+petId;
 
-        super.GET();
+        GET();
 
         Assert.assertEquals(response.getStatusCode(),200);
         Assert.assertEquals(response.getBody().jsonPath().get("name").toString(),"Lili");
@@ -50,8 +51,9 @@ public class TestsPets extends BaseTests {
     public void alterarPet_ArquivoJSON() throws IOException {
         String jsonBody = arquivos.lerJson("src/test/resources/data/petAlterar.json");
 
-        super.request.contentType(ContentType.JSON);
-        super.request.body(jsonBody);
+        super.headers.put("Accept", "application/json");
+        super.headers.put("Content-Type", "application/json");
+        super.body = new JSONObject(jsonBody);
 
         super.PUT();
 
@@ -65,8 +67,9 @@ public class TestsPets extends BaseTests {
     public void excluirPet()
     {
         String petId = "8989";
-        super.request.contentType(ContentType.JSON);
-        super.uri ="/pet/"+petId;
+        super.headers.put("Accept", "application/json");
+        super.headers.put("Content-Type", "application/json");
+        super.uri = "/"+petId;
 
         super.DELETE();
 

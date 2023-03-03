@@ -30,12 +30,11 @@ public class RestAssuredUtils {
     }
 
     //métodos para fazer a execução dos serviços
-    public static Response executarRestRequestRequestSpecification(Method method, RequestSpecification requestSpecification)
+    public static Response executarRestRequestRequestSpecification(Method method, String url, RequestSpecification requestSpecification)
     {
         Response resposta;
 
-        resposta = requestSpecification.request(method);
-                //.request(method,url);
+        resposta = requestSpecification.request(method,url);
 
         return resposta;
     }

@@ -1,6 +1,7 @@
 package testes;
 
 import base.BaseTests;
+import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
@@ -10,9 +11,8 @@ public class TestsAlteracoesRestAssured extends BaseTests {
 
     @BeforeClass
     public void configClasse() {
-        //Inicializar variáveis também
-        super.request.baseUri(prop.getProp("base_url"));
-        super.uri = "/data/2.5/weather";
+        super.uri = prop.getProp("base_url") + "/data/2.5/weather";
+        super.url = "";
     }
 
     @Test
@@ -30,8 +30,7 @@ public class TestsAlteracoesRestAssured extends BaseTests {
         super.params.put("q", "Fortaleza,BR");
         super.params.put("appid", "6a6424d1582a9636d6d186ea0cc53620");
         super.params.put("units", "metric");
-
-        super.request.contentType(ContentType.JSON);
+        super.headers.put("Accept", "application/json");
 
         super.GET();
         Assert.assertEquals(response.getStatusCode(), 200);
