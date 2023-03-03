@@ -8,22 +8,16 @@ import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 import utils.ExtentReportsUtils;
-import utils.PropertiesUtils;
 
 import java.lang.reflect.Method;
 
 public class BaseTests extends ApiRequest implements ITestListener {
-
-    PropertiesUtils prop = new PropertiesUtils();
 
     @BeforeSuite
     public void incializarRelatorio() {
         System.out.println("SUITE");
 
         ExtentReportsUtils.createReport();
-
-        //Inicializar variáveis também
-        super.uri = prop.getProp("base_url") + "/data/2.5/weather";
     }
 
     @BeforeMethod

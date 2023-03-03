@@ -4,7 +4,7 @@ public class LogUtils {
     public void logInfo(String value) {
         if (!value.contains("{}")) {
             //ScenarioUtils.addText(value);
-            ExtentReportsUtils.addDetalhesRequest(value);
+            ExtentReportsUtils.addInfoTest(value);
         }
     }
 

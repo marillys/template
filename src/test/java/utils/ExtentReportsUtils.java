@@ -31,7 +31,6 @@ public class ExtentReportsUtils {
         {
             HTML_REPORTER = new ExtentHtmlReporter(arquivoRelatorio);
 
-
             HTML_REPORTER.config().setEncoding("utf-8");
             HTML_REPORTER.config().setDocumentTitle("Resultados dos Testes Automáticos");
             HTML_REPORTER.config().setReportName("Resultados dos Testes");
@@ -70,7 +69,7 @@ public class ExtentReportsUtils {
 
     }
 
-    public static void addDetalhesRequest(String valor) {
+    public static void addInfoTest(String valor) {
         TEST.log(Status.INFO, "<pre>"+ valor + " </pre>");
     }
 

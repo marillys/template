@@ -10,21 +10,18 @@ public class ApiRequest extends ApiUtils implements ApiVerbos {
     RestAssuredUtils rest = new RestAssuredUtils();
     @Override
     public void GET() {
-        response = rest.executarRestRequest(Method.GET,
-                super.uri,
-                super.params);
+        super.request.params(super.params);
+        super.request.baseUri(super.uri);
+
+        response = rest.executarRestRequestRequestSpecification(Method.GET, super.request);
 
         super.log("GET");
     }
 
     @Override
     public void POST() {
-        response = given()
-                .relaxedHTTPSValidation()
-                .params(params)
-                .headers(headers)
-                .body(body.toString())
-                .post(uri);
+        response = rest.executarRestRequestRequestSpecification(Method.POST, super.uri, super.params,
+                super.formParam, super.headers, super.request);
 
         super.log("POST");
     }
