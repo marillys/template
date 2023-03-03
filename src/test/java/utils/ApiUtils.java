@@ -20,6 +20,7 @@ public class ApiUtils extends LogUtils {
     protected static RequestSpecification request = RestAssured.given().log().all().relaxedHTTPSValidation();
 
     public void log(String verbo) {
+        //TODO Arrumar uma forma de colocar nos logs a request completa
         super.logInfo(" ****** Dados enviados no request ******");
         super.logInfo(verbo + " " + uri);
         super.logInfo("Body : " + " " + body);

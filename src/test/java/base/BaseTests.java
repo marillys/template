@@ -8,10 +8,14 @@ import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 import utils.ExtentReportsUtils;
+import utils.ManipulacaoArquivos;
+import utils.PropertiesUtils;
 
 import java.lang.reflect.Method;
 
 public class BaseTests extends ApiRequest implements ITestListener {
+    public PropertiesUtils prop = new PropertiesUtils();
+    public ManipulacaoArquivos arquivos = new ManipulacaoArquivos();
 
     @BeforeSuite
     public void incializarRelatorio() {

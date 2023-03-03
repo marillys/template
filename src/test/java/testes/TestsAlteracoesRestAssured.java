@@ -5,16 +5,15 @@ import io.restassured.http.ContentType;
 import org.testng.Assert;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
-import utils.PropertiesUtils;
 
 public class TestsAlteracoesRestAssured extends BaseTests {
-    PropertiesUtils prop = new PropertiesUtils();
 
     @BeforeSuite
     public void configClasse()
     {
         //Inicializar variáveis também
-        super.uri = prop.getProp("base_url") + "/data/2.5/weather";
+        super.request.baseUri(prop.getProp("base_url"));
+        super.request.basePath("/data/2.5/weather");
     }
 
     @Test

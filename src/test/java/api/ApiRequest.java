@@ -8,10 +8,10 @@ import static io.restassured.RestAssured.given;
 
 public class ApiRequest extends ApiUtils implements ApiVerbos {
     RestAssuredUtils rest = new RestAssuredUtils();
+
     @Override
     public void GET() {
-        super.request.params(super.params);
-        super.request.baseUri(super.uri);
+        preencherDadosRequest();
 
         response = rest.executarRestRequestRequestSpecification(Method.GET, super.request);
 
@@ -20,20 +20,24 @@ public class ApiRequest extends ApiUtils implements ApiVerbos {
 
     @Override
     public void POST() {
-        response = rest.executarRestRequestRequestSpecification(Method.POST, super.uri, super.params,
-                super.formParam, super.headers, super.request);
+        preencherDadosRequest();
+
+        response = rest.executarRestRequestRequestSpecification(Method.POST, super.request);
 
         super.log("POST");
     }
 
     @Override
     public void PUT() {
-        response = given()
+        /*response = given()
                 .relaxedHTTPSValidation()
                 .params(params)
                 .headers(headers)
                 .body(body.toString())
-                .put(uri);
+                .put(uri);*/
+        preencherDadosRequest();
+
+        response = rest.executarRestRequestRequestSpecification(Method.PUT, super.request);
 
         super.log("PUT");
     }
@@ -52,12 +56,21 @@ public class ApiRequest extends ApiUtils implements ApiVerbos {
 
     @Override
     public void DELETE() {
-        response = given()
+        preencherDadosRequest();
+
+        response = rest.executarRestRequestRequestSpecification(Method.DELETE, super.request);
+
+        /*response = given()
                 .relaxedHTTPSValidation()
                 .params(params)
                 .headers(headers)
-                .delete(uri);
+                .delete(uri);*/
 
         super.log("DELETE");
+    }
+
+    private void preencherDadosRequest() {
+        super.request.params(super.params);
+        super.request.basePath(super.uri);
     }
 }
