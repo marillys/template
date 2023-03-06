@@ -73,6 +73,11 @@ public class ExtentReportsUtils {
         TEST.log(Status.INFO, "<pre>"+ valor + " </pre>");
     }
 
+    public static void addFailTest(String valor)
+    {
+        TEST.log(Status.FAIL, "<pre>"+ valor + " </pre>");
+    }
+
     public static void addRespostaTeste(String url, Response resposta, String tipoEsperado)
     {
         TEST.log(Status.INFO, "<pre>URL: "+ url+" </pre>");

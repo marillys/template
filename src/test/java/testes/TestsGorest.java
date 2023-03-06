@@ -3,9 +3,8 @@ package testes;
 import base.BaseTests;
 import com.github.javafaker.Faker;
 import com.google.gson.Gson;
-import io.restassured.RestAssured;
 import org.json.JSONObject;
-import org.testng.annotations.AfterTest;
+import org.junit.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import testes.modelos.UsersLombok;
@@ -16,14 +15,14 @@ public class TestsGorest extends BaseTests {
 
     @BeforeClass
     public void configClasse() {
-        super.uri = prop.getProp("url.gorest") + "/v1/users";
-        super.url = "";
+        super.uri = "/v1/users";
+        super.url = prop.getProp("url.gorest");
     }
 
     @Test
     public void cadastrarNovoUsuario() {
         super.token = prop.getProp("token_gorest");
-        super.headers.put("Accept", "application/json");
+        //super.headers.put("Accept", "application/json");
         super.headers.put("Authorization", token);
 
         user = UsersLombok.builder()
@@ -36,5 +35,6 @@ public class TestsGorest extends BaseTests {
         super.body = new JSONObject((new Gson().toJson(user)));
 
         super.POST();
+        Assert.assertEquals(201, response.statusCode());
     }
 }

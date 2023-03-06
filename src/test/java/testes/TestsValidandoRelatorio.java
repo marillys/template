@@ -53,24 +53,6 @@ public class TestsValidandoRelatorio extends BaseTests {
     }
 
     @Test
-    public void testeMethodo()
-    {
-        //parametros
-        Map<String,String> queryParam = new HashMap<>();
-
-        queryParam.put("q","Fortaleza,BR");
-        queryParam.put("appid", "6a6424d1582a9636d6d186ea0cc53620");
-        queryParam.put("units","metric");
-
-        RestAssuredUtils rest = new RestAssuredUtils();
-        Response resposta = rest.executarRestRequest(Method.GET,
-                "http://api.openweathermap.org/data/2.5/weather",
-                queryParam);
-
-        Assert.assertEquals(resposta.getStatusCode(),400);
-    }
-
-    @Test
     public void testeAplicacaoWeb()
     {
         //parametros

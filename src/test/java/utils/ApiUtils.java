@@ -1,9 +1,9 @@
 package utils;
 
-import io.restassured.RestAssured;
 import io.restassured.response.Response;
-import io.restassured.specification.RequestSpecification;
+import io.restassured.specification.FilterableRequestSpecification;
 import org.json.JSONObject;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
@@ -18,6 +18,7 @@ public class ApiUtils extends LogUtils {
     protected static Map<String, String> params = new HashMap<>();
     protected static Map<String, String> formParam = new HashMap<>();
     protected static String token;
+    protected static FilterableRequestSpecification httpRequest;
 
     public void log(String verbo) {
         //TODO Arrumar uma forma de colocar nos logs a request completa
@@ -31,5 +32,35 @@ public class ApiUtils extends LogUtils {
         super.logInfo("Status code : " + response.statusCode());
         super.logInfo("Payload recebido:  \n" + response.asPrettyString());//TODO essa linha não funciona quando a response é HTML
         super.logInfo("Tempo de resposta: " + response.timeIn(TimeUnit.MILLISECONDS));
+    }
+
+    public void logRequest() {
+        String request = "Request method: " + httpRequest.getMethod() +
+                "\nRequest URI: " + httpRequest.getURI() +
+                //"\nProxy: " + httpRequest.getProxySpecification(). +
+                "\nRequest params: " + httpRequest.getRequestParams() +
+                "\nQuery params: " + httpRequest.getQueryParams() +
+                "\nForm params:  " + httpRequest.getFormParams() +
+                "\nPath params:	 " + httpRequest.getPathParams() +
+                "\nHeaders:		 " + httpRequest.getHeaders() +
+                "\nCookies:		 " + httpRequest.getCookies() +
+                "\nMultiparts:		 " + httpRequest.getMultiPartParams() +
+                "\nBody:  " + httpRequest.getBody();
+
+        super.logInfo(" ****** Request ******\n" + request);
+    }
+
+    public void logRequestResponse() {
+        logRequest();
+        logResponse();
+    }
+
+    public void logResponse() {
+        String texto = "Status code : " + response.statusCode() +
+                "\nHeaders: " + response.getHeaders() +
+                "\nPayload recebido:  \n" + response.getBody().prettyPrint() +
+                "\nTempo de resposta: " + response.timeIn(TimeUnit.MILLISECONDS);
+
+        super.logInfo(" ****** Response ******\n" + texto);
     }
 }
