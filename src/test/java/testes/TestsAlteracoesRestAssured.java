@@ -1,8 +1,6 @@
 package testes;
 
 import base.BaseTests;
-import io.restassured.RestAssured;
-import io.restassured.http.ContentType;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -11,8 +9,8 @@ public class TestsAlteracoesRestAssured extends BaseTests {
 
     @BeforeClass
     public void configClasse() {
-        super.uri = prop.getProp("base_url") + "/data/2.5/weather";
-        super.url = "";
+        super.uri = "/data/2.5/weather";
+        super.url = prop.getProp("base_url");
     }
 
     @Test

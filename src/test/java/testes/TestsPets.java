@@ -3,8 +3,7 @@ package testes;
 import base.BaseTests;
 import org.json.JSONObject;
 import org.testng.Assert;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 
 import java.io.IOException;
 
@@ -13,8 +12,12 @@ public class TestsPets extends BaseTests {
     @BeforeClass
     public void configClasse()
     {
-        url =prop.getProp("base_url_pets")+"/pet";
-        uri = "";
+        super.url = prop.getProp("base_url_pets");
+    }
+
+    @BeforeMethod
+    public void config(){
+        super.uri ="/pet";
     }
 
     @Test
@@ -38,7 +41,7 @@ public class TestsPets extends BaseTests {
         String petId = "8989";
         super.headers.put("Accept", "application/json");
         super.headers.put("Content-Type", "application/json");
-        uri ="/"+petId;
+        super.uri +="/"+petId;
 
         GET();
 
@@ -69,7 +72,7 @@ public class TestsPets extends BaseTests {
         String petId = "8989";
         super.headers.put("Accept", "application/json");
         super.headers.put("Content-Type", "application/json");
-        super.uri = "/"+petId;
+        super.uri +="/"+petId;
 
         super.DELETE();
 
