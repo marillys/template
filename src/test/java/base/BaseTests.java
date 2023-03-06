@@ -1,7 +1,6 @@
 package base;
 
 import api.ApiRequest;
-import io.restassured.RestAssured;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
 import org.testng.annotations.*;
@@ -27,9 +26,9 @@ public class BaseTests extends ApiRequest implements ITestListener {
     }
 
     @AfterMethod(alwaysRun = true)
-    public void limparVariaveis(){//TODO o request não esta limpando por algum motivo
+    public void limparVariaveis(){
         super.body=null;
-        token = "";
+        super.token = "";
         super.headers = new HashMap<>();
         super.params = new HashMap<>();
     }
@@ -37,7 +36,6 @@ public class BaseTests extends ApiRequest implements ITestListener {
     @AfterMethod(alwaysRun = true)
     public void afterTest(ITestResult result) {
         ExtentReportsUtils.addTestResult(result);
-
     }
 
     @AfterSuite(alwaysRun = true)

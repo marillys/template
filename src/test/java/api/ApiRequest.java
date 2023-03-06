@@ -3,9 +3,8 @@ package api;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.http.Method;
+import io.restassured.specification.FilterableRequestSpecification;
 import io.restassured.specification.RequestSpecification;
-import  io.restassured.specification.FilterableRequestSpecification;
-
 import utils.ApiUtils;
 import utils.RestAssuredUtils;
 
@@ -30,7 +29,7 @@ public class ApiRequest extends ApiUtils implements ApiVerbos {
         request = RestAssured.given().log().all().relaxedHTTPSValidation();
         RequestBody();
 
-        response = rest.executarRestRequest(Method.POST,request);
+        response = rest.executarRestRequest(Method.POST, request);
 
         super.logRequestResponse();
     }
@@ -68,19 +67,14 @@ public class ApiRequest extends ApiUtils implements ApiVerbos {
     }
 
     private void preencherDadosRequest() {
-        try{
         httpRequest = (FilterableRequestSpecification) request;
         request.queryParams(super.params);
         request.headers(super.headers);
         request.basePath(super.uri);
-        request.baseUri(super.url);}
-        catch (Exception e)
-        {
-            logError(e.toString());
-        }
+        request.baseUri(super.url);
     }
-    private void RequestBody()
-    {
+
+    private void RequestBody() {
         preencherDadosRequest();
         request.contentType(ContentType.JSON);
         request.body(super.body.toString());

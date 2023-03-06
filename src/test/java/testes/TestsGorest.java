@@ -22,7 +22,6 @@ public class TestsGorest extends BaseTests {
     @Test
     public void cadastrarNovoUsuario() {
         super.token = prop.getProp("token_gorest");
-        //super.headers.put("Accept", "application/json");
         super.headers.put("Authorization", token);
 
         user = UsersLombok.builder()

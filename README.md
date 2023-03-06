@@ -11,13 +11,16 @@ Este é um projeto base para executar testes de API e ao final da execução ger
 
 ## Configuração
 No arquivo de configuração [config.properties](src/test/resources/config.properties) pode se definir as propriedades de configuração do relatório e dos testes também.
-As primeiras linhas são reservadas para as configurações do relatório como nome e endereço do arquivo. As demais, não são obrigadas a existirem e estão relacionadas com os testes de exemplo.
+As primeiras linhas são reservadas para as configurações do relatório como nome e endereço do arquivo, título e nome do relatório e formato de data dentro do documento. As demais, não são obrigadas a existirem e estão relacionadas com os testes de exemplo.
 
 Ex de configuração do relatório:
 ```properties
 # ----------------- Configuração do relatório ------------------
 caminhoRelatorio = ./target/reports/
-nomeRelatorio = relatorio.htm
+nomeArquivo = relatorio2.htm
+tituloDocumento = Relatório Template
+nomeRelatorio = Resultados dos Testes de Exemplo
+formatoData = dd/MM/yyyy HH:mm:ss.SSS
 ````
 
 ## Como rodar a aplicação

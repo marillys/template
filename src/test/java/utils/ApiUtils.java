@@ -8,7 +8,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
-
 public class ApiUtils extends LogUtils {
     protected static Response response;
     protected static JSONObject body;
@@ -21,7 +20,6 @@ public class ApiUtils extends LogUtils {
     protected static FilterableRequestSpecification httpRequest;
 
     public void log(String verbo) {
-        //TODO Arrumar uma forma de colocar nos logs a request completa
         super.logInfo(" ****** Dados enviados no request ******");
         super.logInfo(verbo + " " + url + uri);
         super.logInfo("Body : " + " " + body);
@@ -34,6 +32,9 @@ public class ApiUtils extends LogUtils {
         super.logInfo("Tempo de resposta: " + response.timeIn(TimeUnit.MILLISECONDS));
     }
 
+    /**
+     * Escreve a response no relatório
+     */
     public void logRequest() {
         String request = "Request method: " + httpRequest.getMethod() +
                 "\nRequest URI: " + httpRequest.getURI() +
@@ -50,11 +51,9 @@ public class ApiUtils extends LogUtils {
         super.logInfo(" ****** Request ******\n" + request);
     }
 
-    public void logRequestResponse() {
-        logRequest();
-        logResponse();
-    }
-
+    /**
+     * Escreve a response no relatório
+     */
     public void logResponse() {
         String texto = "Status code : " + response.statusCode() +
                 "\nHeaders: " + response.getHeaders() +
@@ -63,4 +62,14 @@ public class ApiUtils extends LogUtils {
 
         super.logInfo(" ****** Response ******\n" + texto);
     }
+
+    /**
+     * Loga a request e a response em um formato específico
+     */
+    public void logRequestResponse() {
+        logRequest();
+        logResponse();
+    }
+
+
 }

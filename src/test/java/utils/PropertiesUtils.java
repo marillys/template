@@ -4,8 +4,8 @@ import java.io.IOException;
 import java.util.Properties;
 
 public class PropertiesUtils {
-    Properties properties = new Properties();
-    String arquivoConfiguracao = "config.properties";
+    private Properties properties = new Properties();
+    private String arquivoConfiguracao = "config.properties";
 
     public String getProp(String key) {
         try {

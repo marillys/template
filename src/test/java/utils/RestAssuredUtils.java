@@ -10,7 +10,6 @@ import java.util.Map;
 
 
 public class RestAssuredUtils {
-    private static LogUtils logs;
 
     /**
      * Executa a request passando apenas o metodo e a request previamente configurada
@@ -19,16 +18,13 @@ public class RestAssuredUtils {
      * @param requestSpecification request configurada, com body, parametro, uri, url e etc
      */
     public static Response executarRestRequest(Method method, RequestSpecification requestSpecification) {
-        try {
-            Response resposta;
 
-            resposta = requestSpecification.request(method);
+        Response resposta;
 
-            return resposta;
-        } catch (Exception e) {
+        resposta = requestSpecification.request(method);
 
-            return null;
-        }
+        return resposta;
+
     }
 
     public static Response executarRequestAplicacaoWeb(Method method, String url, Map<String, String> queryParam,
