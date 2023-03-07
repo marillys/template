@@ -1,10 +1,12 @@
 #Arquivos do IntelliJ
-
 .idea
 *.iml
 
 # Compiled class file
 *.class
+
+#pastas
+/target/
 
 # Log file
 *.log
