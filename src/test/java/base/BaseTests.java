@@ -1,6 +1,8 @@
 package base;
 
 import api.ApiRequest;
+import io.cucumber.java.After;
+import io.cucumber.java.Before;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
 import org.testng.annotations.*;
@@ -26,14 +28,6 @@ public class BaseTests extends ApiRequest implements ITestListener {
     }
 
     @AfterMethod(alwaysRun = true)
-    public void limparVariaveis(){
-        super.body=null;
-        super.token = "";
-        super.headers = new HashMap<>();
-        super.params = new HashMap<>();
-    }
-
-    @AfterMethod(alwaysRun = true)
     public void afterTest(ITestResult result) {
         ExtentReportsUtils.addTestResult(result);
     }
@@ -41,5 +35,13 @@ public class BaseTests extends ApiRequest implements ITestListener {
     @AfterSuite(alwaysRun = true)
     public void afterSuite() {
         ExtentReportsUtils.generateReport();
+    }
+
+    @AfterMethod(alwaysRun = true)
+    public void limparVariaveis(){
+        super.body=null;
+        super.token = "";
+        super.headers = new HashMap<>();
+        super.params = new HashMap<>();
     }
 }

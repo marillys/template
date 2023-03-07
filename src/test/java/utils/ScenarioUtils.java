@@ -1,12 +1,12 @@
 package utils;
 
+import io.cucumber.java.Scenario;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class ScenarioUtils {
 
-    /*
     private static Map<Long, Scenario> repository = new HashMap<>();
 
     public static void add(Scenario scenario) {
@@ -29,5 +29,5 @@ public class ScenarioUtils {
 
     public static void addText(String texto) {
         get().log(texto);
-    }*/
+    }
 }

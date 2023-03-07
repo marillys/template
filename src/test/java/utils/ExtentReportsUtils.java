@@ -5,10 +5,9 @@ import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.Status;
 import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
 import com.aventstack.extentreports.reporter.configuration.Theme;
+import io.cucumber.java.Scenario;
 import io.restassured.response.Response;
 import org.testng.ITestResult;
-
-import java.util.Arrays;
 
 public class ExtentReportsUtils {
 
@@ -68,7 +67,30 @@ public class ExtentReportsUtils {
                 break;
 
             default:
-                TEST.log(Status.PASS, "Test Result: "+ Status.PASS);
+                TEST.log(Status.PASS, "Test Result: " + Status.PASS);
+                break;
+        }
+    }
+
+    /**
+     * Adiciona resultado do teste conforme os resultados do cenário do cucumber
+     */
+    public static void addTestResultCucumber(Scenario scenario) {
+        switch (scenario.getStatus()) {
+            case FAILED:
+                TEST.log(Status.FAIL, "Test Result: " + Status.FAIL +
+                        "<pre>Mensagem\n" + scenario.getName() + " </pre>");
+//TODO pegar o trace da falha e colocar no relatório
+//tags que foram executadas scenario.getSourceTagNames()
+                //Enderfeço do arquivo featrure scenario.getId()
+                break;
+
+            case SKIPPED:
+                TEST.log(Status.SKIP, "Test Result: " + Status.SKIP);
+                break;
+
+            default:
+                TEST.log(Status.PASS, "Test Result: " + Status.PASS);
                 break;
         }
     }
